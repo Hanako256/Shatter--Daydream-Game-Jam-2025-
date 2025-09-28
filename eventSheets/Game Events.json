@@ -1917,57 +1917,57 @@
 					"actions": [
 						{
 							"callFunction": "CreateCombatant",
-							"sid": 475602765979841,
+							"sid": 835857245412976,
 							"parameters": [
 								"Participant.X",
 								"Participant.Y-30",
 								"\"Pigeon\"",
 								"\"Normal\"",
-								"1"
+								"Participant.Team"
 							]
 						},
 						{
 							"callFunction": "CreateCombatant",
-							"sid": 898814690753917,
+							"sid": 770905018064308,
 							"parameters": [
 								"Participant.X+22",
 								"Participant.Y-14",
 								"\"Pigeon\"",
 								"\"Normal\"",
-								"1"
+								"Participant.Team"
 							]
 						},
 						{
 							"callFunction": "CreateCombatant",
-							"sid": 990363800587897,
+							"sid": 116967698605100,
 							"parameters": [
 								"Participant.X-9",
 								"Participant.Y+25",
 								"\"Pigeon\"",
 								"\"Normal\"",
-								"1"
+								"Participant.Team"
 							]
 						},
 						{
 							"callFunction": "CreateCombatant",
-							"sid": 998609462598268,
+							"sid": 564367974305635,
 							"parameters": [
 								"Participant.X+9",
 								"Participant.Y+25",
 								"\"Pigeon\"",
 								"\"Normal\"",
-								"1"
+								"Participant.Team"
 							]
 						},
 						{
 							"callFunction": "CreateCombatant",
-							"sid": 158270206274846,
+							"sid": 248529710515246,
 							"parameters": [
 								"Participant.X-22",
 								"Participant.Y-14",
 								"\"Pigeon\"",
 								"\"Normal\"",
-								"1"
+								"Participant.Team"
 							]
 						},
 						{
