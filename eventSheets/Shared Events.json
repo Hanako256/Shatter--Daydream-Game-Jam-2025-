@@ -1,0 +1,368 @@
+{
+	"name": "Shared Events",
+	"events": [
+		{
+			"eventType": "variable",
+			"name": "LoadedCardStats",
+			"type": "boolean",
+			"initialValue": "false",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 433412116264366
+		},
+		{
+			"eventType": "variable",
+			"name": "LoadedDeck",
+			"type": "boolean",
+			"initialValue": "false",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 300795665524560
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-start-of-layout",
+					"objectClass": "System",
+					"sid": 517942939382613
+				}
+			],
+			"actions": [
+				{
+					"id": "reset-eventvar",
+					"objectClass": "System",
+					"sid": 168574740537427,
+					"parameters": {
+						"variable": "PillarOffset"
+					}
+				},
+				{
+					"id": "reset-eventvar",
+					"objectClass": "System",
+					"sid": 290143334644773,
+					"parameters": {
+						"variable": "PillarScale"
+					}
+				}
+			],
+			"sid": 491520207466951
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "compare-boolean-eventvar",
+					"objectClass": "System",
+					"sid": 366287670929897,
+					"parameters": {
+						"variable": "LoadedCardStats"
+					},
+					"isInverted": true
+				}
+			],
+			"actions": [
+				{
+					"id": "request-project-file",
+					"objectClass": "AJAX",
+					"sid": 694182386728724,
+					"parameters": {
+						"tag": "\"Card Stats Array\"",
+						"file": "CardStats.json"
+					}
+				}
+			],
+			"sid": 506854012668680
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "compare-boolean-eventvar",
+					"objectClass": "System",
+					"sid": 595085707410677,
+					"parameters": {
+						"variable": "LoadedDeck"
+					},
+					"isInverted": true
+				}
+			],
+			"actions": [
+				{
+					"id": "request-project-file",
+					"objectClass": "AJAX",
+					"sid": 586835267831732,
+					"parameters": {
+						"tag": "\"Deck Array\"",
+						"file": "Deck.json"
+					}
+				}
+			],
+			"sid": 852654030884433
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-completed",
+					"objectClass": "AJAX",
+					"sid": 103567490785934,
+					"parameters": {
+						"tag": "\"Card Stats Array\""
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "load",
+					"objectClass": "CardStats",
+					"sid": 602447168999062,
+					"parameters": {
+						"json": "AJAX.LastData"
+					}
+				},
+				{
+					"id": "set-boolean-eventvar",
+					"objectClass": "System",
+					"sid": 678386616369007,
+					"parameters": {
+						"variable": "LoadedCardStats",
+						"value": "true"
+					}
+				}
+			],
+			"sid": 443633184860058
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-completed",
+					"objectClass": "AJAX",
+					"sid": 145920193579027,
+					"parameters": {
+						"tag": "\"Deck Array\""
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "load",
+					"objectClass": "Deck",
+					"sid": 942793377120019,
+					"parameters": {
+						"json": "AJAX.LastData"
+					}
+				},
+				{
+					"id": "set-boolean-eventvar",
+					"objectClass": "System",
+					"sid": 384250589515048,
+					"parameters": {
+						"variable": "LoadedDeck",
+						"value": "true"
+					}
+				}
+			],
+			"sid": 637664046901429
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "compare-boolean-eventvar",
+					"objectClass": "System",
+					"sid": 910147801770182,
+					"parameters": {
+						"variable": "LoadedCardStats"
+					}
+				},
+				{
+					"id": "compare-boolean-eventvar",
+					"objectClass": "System",
+					"sid": 967965309631059,
+					"parameters": {
+						"variable": "LoadedDeck"
+					}
+				},
+				{
+					"id": "compare-boolean-eventvar",
+					"objectClass": "System",
+					"sid": 979016244814489,
+					"parameters": {
+						"variable": "LoadedAll"
+					},
+					"isInverted": true
+				}
+			],
+			"actions": [
+				{
+					"id": "set-boolean-eventvar",
+					"objectClass": "System",
+					"sid": 567048656759113,
+					"parameters": {
+						"variable": "LoadedAll",
+						"value": "true"
+					}
+				}
+			],
+			"sid": 973017225856148
+		},
+		{
+			"functionName": "CardStatXID",
+			"functionDescription": "",
+			"functionCategory": "",
+			"functionReturnType": "number",
+			"functionCopyPicked": false,
+			"functionIsAsync": false,
+			"functionParameters": [
+				{
+					"name": "CardType",
+					"type": "string",
+					"initialValue": "",
+					"comment": "",
+					"sid": 399956569885591
+				}
+			],
+			"eventType": "function-block",
+			"conditions": [],
+			"actions": [],
+			"sid": 463673825456856,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "for-each-element",
+							"objectClass": "CardStats",
+							"sid": 922282831369530,
+							"parameters": {
+								"axes": "x"
+							}
+						},
+						{
+							"id": "compare-at-xy",
+							"objectClass": "CardStats",
+							"sid": 299404844250351,
+							"parameters": {
+								"x": "CardStats.CurX",
+								"y": "0",
+								"comparison": 0,
+								"value": "CardType"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-function-return-value",
+							"objectClass": "Functions",
+							"sid": 638523112923452,
+							"parameters": {
+								"value": "CardStats.CurX"
+							}
+						}
+					],
+					"sid": 464834829549085
+				}
+			]
+		},
+		{
+			"functionName": "RetrieveCardStat",
+			"functionDescription": "",
+			"functionCategory": "",
+			"functionReturnType": "any",
+			"functionCopyPicked": false,
+			"functionIsAsync": false,
+			"functionParameters": [
+				{
+					"name": "Type",
+					"type": "string",
+					"initialValue": "",
+					"comment": "",
+					"sid": 721321987528201
+				},
+				{
+					"name": "Y",
+					"type": "number",
+					"initialValue": "1",
+					"comment": "",
+					"sid": 440406773386834
+				}
+			],
+			"eventType": "function-block",
+			"conditions": [],
+			"actions": [
+				{
+					"id": "set-function-return-value",
+					"objectClass": "Functions",
+					"sid": 728170824400442,
+					"parameters": {
+						"value": "CardStats.At(Functions.CardStatXID(Type),Y)"
+					}
+				}
+			],
+			"sid": 418465806036962
+		},
+		{
+			"functionName": "DeckCardXID",
+			"functionDescription": "",
+			"functionCategory": "",
+			"functionReturnType": "number",
+			"functionCopyPicked": false,
+			"functionIsAsync": false,
+			"functionParameters": [
+				{
+					"name": "CardType",
+					"type": "string",
+					"initialValue": "",
+					"comment": "",
+					"sid": 877219130953156
+				}
+			],
+			"eventType": "function-block",
+			"conditions": [],
+			"actions": [],
+			"sid": 177978279571808,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "for-each-element",
+							"objectClass": "Deck",
+							"sid": 246910983497548,
+							"parameters": {
+								"axes": "x"
+							}
+						},
+						{
+							"id": "compare-at-xy",
+							"objectClass": "Deck",
+							"sid": 746781799206452,
+							"parameters": {
+								"x": "Deck.CurX",
+								"y": "0",
+								"comparison": 0,
+								"value": "CardType"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-function-return-value",
+							"objectClass": "Functions",
+							"sid": 139315510808725,
+							"parameters": {
+								"value": "Deck.CurX"
+							}
+						}
+					],
+					"sid": 960523691847584
+				}
+			]
+		}
+	],
+	"sid": 575746005566230
+}

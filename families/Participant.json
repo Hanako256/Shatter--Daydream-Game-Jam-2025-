@@ -1,0 +1,94 @@
+{
+	"name": "Participant",
+	"plugin-id": "Sprite",
+	"sid": 307787734147406,
+	"instanceVariables": [
+		{
+			"name": "Type",
+			"type": "string",
+			"desc": "",
+			"show": true,
+			"sid": 719962579487160
+		},
+		{
+			"name": "Team",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 591591283104768
+		},
+		{
+			"name": "MarkedForSacrifice",
+			"type": "boolean",
+			"desc": "",
+			"show": true,
+			"sid": 180221433094876
+		},
+		{
+			"name": "TargetDebugShit",
+			"type": "string",
+			"desc": "",
+			"show": true,
+			"sid": 553614681610797
+		},
+		{
+			"name": "TargetUID",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 494899308546237
+		},
+		{
+			"name": "Health",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 833388059090726
+		},
+		{
+			"name": "MaxHealth",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 679564192107105
+		},
+		{
+			"name": "TargetX",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 142221050733888
+		},
+		{
+			"name": "TargetY",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 151089504989685
+		},
+		{
+			"name": "Special",
+			"type": "string",
+			"desc": "",
+			"show": true,
+			"sid": 413025157004936
+		}
+	],
+	"behaviorTypes": [
+		{
+			"behaviorId": "Pathfinding",
+			"name": "Pathfinding",
+			"sid": 315910532141083
+		},
+		{
+			"behaviorId": "Timer",
+			"name": "Timer",
+			"sid": 423150510228178
+		}
+	],
+	"effectTypes": [],
+	"members": [
+		"Pillar",
+		"Combatant"
+	]
+}

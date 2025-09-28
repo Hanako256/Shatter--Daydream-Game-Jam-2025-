@@ -1,0 +1,183 @@
+{
+	"name": "Menubutton",
+	"plugin-id": "Sprite",
+	"sid": 382204024604224,
+	"isGlobal": false,
+	"editorNewInstanceIsReplica": true,
+	"instanceVariables": [
+		{
+			"name": "Function",
+			"type": "string",
+			"desc": "",
+			"show": true,
+			"sid": 330671467073204
+		}
+	],
+	"behaviorTypes": [],
+	"effectTypes": [],
+	"animations": {
+		"items": [
+			{
+				"frames": [
+					{
+						"width": 250,
+						"height": 250,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 7640588,
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": ""
+					}
+				],
+				"sid": 826485090101999,
+				"name": "Placeholder",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 5
+			},
+			{
+				"frames": [
+					{
+						"width": 101,
+						"height": 45,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 905410,
+						"collisionPoly": {
+							"points": [
+								0.0891089108910891,
+								0,
+								0.9108910891089109,
+								0,
+								0.9504950495049505,
+								0.044444444444444446,
+								0.9801980198019802,
+								0.1111111111111111,
+								1,
+								0.2,
+								1,
+								0.8,
+								0.9801980198019802,
+								0.8888888888888888,
+								0.9504950495049505,
+								0.9555555555555556,
+								0.9108910891089109,
+								1,
+								0.0891089108910891,
+								1,
+								0.04950495049504951,
+								0.9555555555555556,
+								0.019801980198019802,
+								0.8888888888888888,
+								0,
+								0.8,
+								0,
+								0.2,
+								0.019801980198019802,
+								0.1111111111111111,
+								0.04950495049504951,
+								0.044444444444444446
+							]
+						},
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": ""
+					}
+				],
+				"sid": 878508284138107,
+				"name": "Trans pill (like literally that's exactly what it looks like)",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 5
+			},
+			{
+				"frames": [
+					{
+						"width": 100,
+						"height": 42,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 5741068,
+						"collisionPoly": {
+							"points": [
+								0.07,
+								0,
+								0.94,
+								0.023809523809523808,
+								0.99,
+								0.14285714285714285,
+								1,
+								0.19047619047619047,
+								1,
+								0.8095238095238095,
+								0.99,
+								0.8571428571428571,
+								0.92,
+								1,
+								0.05,
+								0.9761904761904762,
+								0,
+								0.8571428571428571,
+								0,
+								0.14285714285714285
+							]
+						},
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": ""
+					}
+				],
+				"sid": 572202039468971,
+				"name": "Edgy",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 5
+			},
+			{
+				"frames": [
+					{
+						"width": 181,
+						"height": 133,
+						"originX": 0.5027624309392266,
+						"originY": 0.5037593984962406,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 2623333,
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": ""
+					}
+				],
+				"sid": 468766418014709,
+				"name": "Cow",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 5
+			}
+		],
+		"subfolders": []
+	}
+}

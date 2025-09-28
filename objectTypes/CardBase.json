@@ -1,0 +1,67 @@
+{
+	"name": "CardBase",
+	"plugin-id": "Sprite",
+	"sid": 974430408526403,
+	"isGlobal": false,
+	"editorNewInstanceIsReplica": true,
+	"instanceVariables": [
+		{
+			"name": "CardType",
+			"type": "string",
+			"desc": "",
+			"show": true,
+			"sid": 978875737027162
+		},
+		{
+			"name": "TargetSize",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 788833599417293
+		}
+	],
+	"behaviorTypes": [],
+	"effectTypes": [],
+	"animations": {
+		"items": [
+			{
+				"frames": [
+					{
+						"width": 250,
+						"height": 250,
+						"originX": 0.5034042553191489,
+						"originY": 0.5034042553191489,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 1150609,
+						"collisionPoly": {
+							"points": [
+								0.02,
+								0.02,
+								0.98,
+								0.02,
+								0.98,
+								0.98,
+								0.02,
+								0.98
+							]
+						},
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": ""
+					}
+				],
+				"sid": 507726175306016,
+				"name": "Animation 1",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 5
+			}
+		],
+		"subfolders": []
+	}
+}

@@ -1,0 +1,72 @@
+{
+	"name": "Title",
+	"plugin-id": "Sprite",
+	"sid": 302024479875923,
+	"isGlobal": false,
+	"editorNewInstanceIsReplica": true,
+	"instanceVariables": [],
+	"behaviorTypes": [
+		{
+			"behaviorId": "Sin",
+			"name": "Sine",
+			"sid": 868805802254853
+		}
+	],
+	"effectTypes": [],
+	"animations": {
+		"items": [
+			{
+				"frames": [
+					{
+						"width": 394,
+						"height": 131,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 5107008,
+						"collisionPoly": {
+							"points": [
+								0.5786802030456852,
+								0,
+								0.8121827411167513,
+								0.030534351145038167,
+								0.9314720812182741,
+								0.11450381679389313,
+								0.9619289340101523,
+								0.16793893129770993,
+								0.9796954314720813,
+								0.26717557251908397,
+								0.9974619289340102,
+								0.816793893129771,
+								0.949238578680203,
+								0.916030534351145,
+								0.09898477157360407,
+								0.9694656488549618,
+								0.0025380710659898475,
+								0.7404580152671756,
+								0.030456852791878174,
+								0.1984732824427481,
+								0.07106598984771574,
+								0.03816793893129771
+							]
+						},
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": ""
+					}
+				],
+				"sid": 556732839626972,
+				"name": "SHATTER",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 5
+			}
+		],
+		"subfolders": []
+	}
+}

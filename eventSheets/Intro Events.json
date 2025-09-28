@@ -1,0 +1,84 @@
+{
+	"name": "Intro Events",
+	"events": [
+		{
+			"eventType": "include",
+			"includeSheet": "Shared Events"
+		},
+		{
+			"eventType": "variable",
+			"name": "LoadedAll",
+			"type": "boolean",
+			"initialValue": "false",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 675689889309096
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-start-of-layout",
+					"objectClass": "System",
+					"sid": 867649498420596
+				}
+			],
+			"actions": [
+				{
+					"id": "set-boolean-eventvar",
+					"objectClass": "System",
+					"sid": 955378307647344,
+					"parameters": {
+						"variable": "LoadedCardStats",
+						"value": "false"
+					}
+				},
+				{
+					"id": "set-boolean-eventvar",
+					"objectClass": "System",
+					"sid": 603336223900769,
+					"parameters": {
+						"variable": "LoadedDeck",
+						"value": "false"
+					}
+				},
+				{
+					"id": "set-boolean-eventvar",
+					"objectClass": "System",
+					"sid": 596779647191780,
+					"parameters": {
+						"variable": "LoadedAll",
+						"value": "false"
+					}
+				}
+			],
+			"sid": 999393493676431
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "compare-boolean-eventvar",
+					"objectClass": "System",
+					"sid": 360768974868204,
+					"parameters": {
+						"variable": "LoadedAll"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "go-to-layout",
+					"objectClass": "System",
+					"sid": 441922817024009,
+					"parameters": {
+						"layout": "Menu"
+					}
+				}
+			],
+			"sid": 214374296723478
+		}
+	],
+	"sid": 727603193163732
+}

@@ -1,0 +1,212 @@
+{
+	"name": "Menu Events",
+	"events": [
+		{
+			"eventType": "include",
+			"includeSheet": "Shared Events"
+		},
+		{
+			"eventType": "variable",
+			"name": "Set",
+			"type": "string",
+			"initialValue": "1",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 262570732291147
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "every-tick",
+					"objectClass": "System",
+					"sid": 952853033833331
+				}
+			],
+			"actions": [
+				{
+					"id": "go-to-layout",
+					"objectClass": "System",
+					"sid": 296744113530754,
+					"disabled": true,
+					"parameters": {
+						"layout": "Game"
+					}
+				}
+			],
+			"sid": 162110350632150
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-object-clicked",
+					"objectClass": "Mouse",
+					"sid": 918105719783206,
+					"parameters": {
+						"mouse-button": "left",
+						"click-type": "clicked",
+						"object-clicked": "Menubutton"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-eventvar-value",
+					"objectClass": "System",
+					"sid": 941016774833721,
+					"parameters": {
+						"variable": "Set",
+						"value": "right(Menubutton.Function,1)"
+					}
+				}
+			],
+			"sid": 142264345752820,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "Menubutton",
+							"sid": 656048149636793,
+							"parameters": {
+								"instance-variable": "Function",
+								"comparison": 0,
+								"value": "\"Set 2\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "split-string",
+							"objectClass": "Deck",
+							"sid": 120868750379818,
+							"parameters": {
+								"string": "\"Goat Herd,Slime,Goat,Slime\"",
+								"separator": "\",\"",
+								"type": "auto"
+							}
+						}
+					],
+					"sid": 425264561212708
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "Menubutton",
+							"sid": 553792690154733,
+							"parameters": {
+								"instance-variable": "Function",
+								"comparison": 0,
+								"value": "\"Set 3\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "split-string",
+							"objectClass": "Deck",
+							"sid": 596449052163172,
+							"parameters": {
+								"string": "\"Pigeon,Poe,Pigeon Flock,Pigeon\"",
+								"separator": "\",\"",
+								"type": "auto"
+							}
+						}
+					],
+					"sid": 193225059934711
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "Menubutton",
+							"sid": 325844393180702,
+							"parameters": {
+								"instance-variable": "Function",
+								"comparison": 0,
+								"value": "\"Set C\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "split-string",
+							"objectClass": "Deck",
+							"sid": 120955737605856,
+							"parameters": {
+								"string": "\"Cow,Cow,Cow,Cow\"",
+								"separator": "\",\"",
+								"type": "auto"
+							}
+						}
+					],
+					"sid": 409726511075402
+				},
+				{
+					"eventType": "block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "wait",
+							"objectClass": "System",
+							"sid": 623873369816075,
+							"parameters": {
+								"seconds": "0.2",
+								"use-timescale": true
+							}
+						},
+						{
+							"id": "go-to-layout",
+							"objectClass": "System",
+							"sid": 301564855394902,
+							"parameters": {
+								"layout": "Game"
+							}
+						}
+					],
+					"sid": 948242750822020
+				}
+			]
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-created",
+					"objectClass": "Menubutton",
+					"sid": 246109621595057
+				}
+			],
+			"actions": [
+				{
+					"id": "spawn-another-object",
+					"objectClass": "Menubutton",
+					"sid": 908987340128408,
+					"parameters": {
+						"object": "MenuButtonText",
+						"layer": "0",
+						"image-point": "0",
+						"create-hierarchy": false,
+						"template-name": "\"\""
+					}
+				},
+				{
+					"id": "set-text",
+					"objectClass": "MenuButtonText",
+					"sid": 819820442779538,
+					"parameters": {
+						"text": "Menubutton.Function"
+					}
+				}
+			],
+			"sid": 455778744239891
+		}
+	],
+	"sid": 824518688927712
+}

@@ -1,0 +1,3188 @@
+{
+	"name": "Game Events",
+	"events": [
+		{
+			"eventType": "include",
+			"includeSheet": "Shared Events"
+		},
+		{
+			"eventType": "variable",
+			"name": "PillarScale",
+			"type": "number",
+			"initialValue": "1.1",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 184228742922644
+		},
+		{
+			"eventType": "variable",
+			"name": "PillarOffset",
+			"type": "number",
+			"initialValue": "200",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 930802411975106
+		},
+		{
+			"eventType": "variable",
+			"name": "CardX",
+			"type": "number",
+			"initialValue": "50",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 108713304111719
+		},
+		{
+			"eventType": "variable",
+			"name": "SelectedCardUID",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 875188087761074
+		},
+		{
+			"eventType": "variable",
+			"name": "SelectedCardType",
+			"type": "string",
+			"initialValue": "",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 696078965203791
+		},
+		{
+			"eventType": "variable",
+			"name": "Sacrificees",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 140893425565144
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-start-of-layout",
+					"objectClass": "System",
+					"sid": 118081823401632
+				}
+			],
+			"actions": [
+				{
+					"id": "set-default-color",
+					"objectClass": "Background",
+					"sid": 110868226824619,
+					"parameters": {
+						"color": "rgbEx(random(15,100),random(15,100),random(15,100))"
+					}
+				},
+				{
+					"callFunction": "InitializeField",
+					"sid": 937604223276677
+				},
+				{
+					"id": "wait",
+					"objectClass": "System",
+					"sid": 142501676814590,
+					"parameters": {
+						"seconds": "14",
+						"use-timescale": true
+					}
+				},
+				{
+					"id": "play",
+					"objectClass": "Audio",
+					"sid": 669868372630019,
+					"parameters": {
+						"audio-file": "Base theme (new cropped)",
+						"loop": "looping",
+						"volume": "0",
+						"stereo-pan": "0",
+						"tag-optional": "\"\""
+					}
+				}
+			],
+			"sid": 924754127081997
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "every-tick",
+					"objectClass": "System",
+					"sid": 322466395557495
+				}
+			],
+			"actions": [
+				{
+					"id": "set-eventvar-value",
+					"objectClass": "System",
+					"sid": 264372643071812,
+					"parameters": {
+						"variable": "Sacrificees",
+						"value": "0"
+					}
+				}
+			],
+			"sid": 818130231028937,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "for-each",
+							"objectClass": "System",
+							"sid": 589537265005996,
+							"parameters": {
+								"object": "Combatant"
+							}
+						}
+					],
+					"actions": [],
+					"sid": 176292775934829,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "is-boolean-instance-variable-set",
+									"objectClass": "Combatant",
+									"sid": 655275664212431,
+									"parameters": {
+										"instance-variable": "MarkedForSacrifice"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "add-to-eventvar",
+									"objectClass": "System",
+									"sid": 838332392955958,
+									"parameters": {
+										"variable": "Sacrificees",
+										"value": "Functions.RetrieveCardStat(Combatant.Type,6)"
+									}
+								},
+								{
+									"id": "set-default-color",
+									"objectClass": "Combatant",
+									"sid": 294681355065471,
+									"parameters": {
+										"color": "rgbEx(100, 40, 40)"
+									}
+								}
+							],
+							"sid": 450750174895366
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 615815271975786
+								}
+							],
+							"actions": [
+								{
+									"id": "set-default-color",
+									"objectClass": "Combatant",
+									"sid": 763824793849338,
+									"parameters": {
+										"color": "rgbEx(100, 100, 100)"
+									}
+								}
+							],
+							"sid": 670755932867388
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-timer",
+									"objectClass": "Combatant",
+									"sid": 542775352700883,
+									"behaviorType": "Timer",
+									"parameters": {
+										"tag": "\"Cooldown\""
+									}
+								}
+							],
+							"actions": [],
+							"sid": 713639596608865,
+							"children": [
+								{
+									"eventType": "variable",
+									"name": "Damage",
+									"type": "number",
+									"initialValue": "2.3",
+									"comment": "",
+									"isStatic": false,
+									"isConstant": false,
+									"sid": 696717921567557
+								},
+								{
+									"eventType": "variable",
+									"name": "TargetUID",
+									"type": "number",
+									"initialValue": "0",
+									"comment": "",
+									"isStatic": false,
+									"isConstant": false,
+									"sid": 451813393671303
+								},
+								{
+									"eventType": "block",
+									"conditions": [],
+									"actions": [
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 715893569051558,
+											"parameters": {
+												"variable": "Damage",
+												"value": "Functions.RetrieveCardStat(Combatant.Type,2)*Functions.RetrieveCardStat(Combatant.Type,9)"
+											}
+										},
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 779642408449709,
+											"parameters": {
+												"variable": "TargetUID",
+												"value": "Combatant.TargetUID"
+											}
+										}
+									],
+									"sid": 983140477545593,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-two-values",
+													"objectClass": "System",
+													"sid": 481491461789031,
+													"parameters": {
+														"first-value": "distance(Combatant.X,Combatant.Y,Combatant.TargetX,Combatant.TargetY)",
+														"comparison": 2,
+														"second-value": "50"
+													}
+												},
+												{
+													"id": "pick-all",
+													"objectClass": "System",
+													"sid": 618968084978841,
+													"parameters": {
+														"object": "Participant"
+													}
+												},
+												{
+													"id": "pick-by-unique-id",
+													"objectClass": "Participant",
+													"sid": 581571093809785,
+													"parameters": {
+														"unique-id": "TargetUID"
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "subtract-from-instvar",
+													"objectClass": "Participant",
+													"sid": 454546416488088,
+													"parameters": {
+														"instance-variable": "Health",
+														"value": "Damage"
+													}
+												}
+											],
+											"sid": 766621634653709
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "pick-nearestfurthest",
+							"objectClass": "CardImage",
+							"sid": 506705855325519,
+							"parameters": {
+								"which": "nearest",
+								"x": "0",
+								"y": "0"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-animation",
+							"objectClass": "CardImage",
+							"sid": 256131084511697,
+							"parameters": {
+								"animation": "Deck.At(0)",
+								"from": "beginning"
+							}
+						}
+					],
+					"sid": 708089694253241
+				}
+			]
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "every-x-seconds",
+					"objectClass": "System",
+					"sid": 922836564022298,
+					"parameters": {
+						"interval-seconds": "4"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "create-object",
+					"objectClass": "System",
+					"sid": 415855800139233,
+					"parameters": {
+						"object-to-create": "Background",
+						"layer": "\"Background\"",
+						"x": "854",
+						"y": "480",
+						"create-hierarchy": false,
+						"template-name": "\"\""
+					}
+				},
+				{
+					"id": "set-default-color",
+					"objectClass": "Background",
+					"sid": 873987473916105,
+					"parameters": {
+						"color": "rgbEx(random(15,70),random(15,70),random(15,70))"
+					}
+				},
+				{
+					"id": "move-to-bottom",
+					"objectClass": "Background",
+					"sid": 466210843829075
+				}
+			],
+			"sid": 627904429645555
+		},
+		{
+			"functionName": "InitializeField",
+			"functionDescription": "Initialize the map for a game. Will make compatible with different map types.",
+			"functionCategory": "",
+			"functionReturnType": "none",
+			"functionCopyPicked": false,
+			"functionIsAsync": false,
+			"functionParameters": [],
+			"eventType": "function-block",
+			"conditions": [],
+			"actions": [
+				{
+					"id": "create-object",
+					"objectClass": "System",
+					"sid": 642951536611943,
+					"parameters": {
+						"object-to-create": "Pillar",
+						"layer": "\"Peasants\"",
+						"x": "PillarOffset",
+						"y": "125",
+						"create-hierarchy": true,
+						"template-name": "\"Lesser\""
+					}
+				},
+				{
+					"id": "create-object",
+					"objectClass": "System",
+					"sid": 342393333197753,
+					"parameters": {
+						"object-to-create": "Pillar",
+						"layer": "\"Peasants\"",
+						"x": "PillarOffset+35",
+						"y": "265",
+						"create-hierarchy": true,
+						"template-name": "\"Lesser\""
+					}
+				},
+				{
+					"id": "create-object",
+					"objectClass": "System",
+					"sid": 341377758377577,
+					"parameters": {
+						"object-to-create": "Pillar",
+						"layer": "\"Peasants\"",
+						"x": "PillarOffset",
+						"y": "480-75",
+						"create-hierarchy": true,
+						"template-name": "\"Lesser\""
+					}
+				},
+				{
+					"id": "create-object",
+					"objectClass": "System",
+					"sid": 277741017006135,
+					"parameters": {
+						"object-to-create": "Pillar",
+						"layer": "\"Peasants\"",
+						"x": "PillarOffset-40",
+						"y": "265",
+						"create-hierarchy": true,
+						"template-name": "\"Prime\""
+					}
+				},
+				{
+					"id": "create-object",
+					"objectClass": "System",
+					"sid": 611860056060723,
+					"parameters": {
+						"object-to-create": "Pillar",
+						"layer": "\"Peasants\"",
+						"x": "854-(PillarOffset)",
+						"y": "125",
+						"create-hierarchy": true,
+						"template-name": "\"LesserEnemy\""
+					}
+				},
+				{
+					"id": "create-object",
+					"objectClass": "System",
+					"sid": 440010249238887,
+					"parameters": {
+						"object-to-create": "Pillar",
+						"layer": "\"Peasants\"",
+						"x": "854-(PillarOffset+35)",
+						"y": "265",
+						"create-hierarchy": true,
+						"template-name": "\"LesserEnemy\""
+					}
+				},
+				{
+					"id": "create-object",
+					"objectClass": "System",
+					"sid": 639291938396432,
+					"parameters": {
+						"object-to-create": "Pillar",
+						"layer": "\"Peasants\"",
+						"x": "854-(PillarOffset)",
+						"y": "480-75",
+						"create-hierarchy": true,
+						"template-name": "\"LesserEnemy\""
+					}
+				},
+				{
+					"id": "create-object",
+					"objectClass": "System",
+					"sid": 852280778789734,
+					"parameters": {
+						"object-to-create": "Pillar",
+						"layer": "\"Peasants\"",
+						"x": "854-(PillarOffset-40)",
+						"y": "265",
+						"create-hierarchy": true,
+						"template-name": "\"PrimeEnemy\""
+					}
+				},
+				{
+					"callFunction": "CreateCard",
+					"sid": 738275291870980,
+					"parameters": [
+						"CardX",
+						"60",
+						"\"Dove\"",
+						"\"Base\""
+					]
+				},
+				{
+					"callFunction": "CreateCard",
+					"sid": 558101582120827,
+					"parameters": [
+						"CardX",
+						"180",
+						"\"Dove\"",
+						"\"Base\""
+					]
+				},
+				{
+					"callFunction": "CreateCard",
+					"sid": 495605110475475,
+					"parameters": [
+						"CardX",
+						"300",
+						"\"Goat\"",
+						"\"Base\""
+					]
+				},
+				{
+					"callFunction": "CreateCard",
+					"sid": 678766839212860,
+					"parameters": [
+						"CardX",
+						"420",
+						"\"Fiend\"",
+						"\"Base\""
+					]
+				}
+			],
+			"sid": 520564237996142
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-created",
+					"objectClass": "Pillar",
+					"sid": 151846332954831
+				}
+			],
+			"actions": [
+				{
+					"id": "set-size",
+					"objectClass": "Pillar",
+					"sid": 891628481067660,
+					"parameters": {
+						"width": "Self.Width*PillarScale",
+						"height": "Self.Height*PillarScale"
+					}
+				}
+			],
+			"sid": 504984691173453
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "for-each",
+					"objectClass": "System",
+					"sid": 638841053773305,
+					"parameters": {
+						"object": "CardBase"
+					}
+				},
+				{
+					"id": "pick-children",
+					"objectClass": "CardBase",
+					"sid": 552245479633420,
+					"parameters": {
+						"child": "CardBorder",
+						"which": "own"
+					}
+				},
+				{
+					"id": "pick-children",
+					"objectClass": "CardBase",
+					"sid": 463041982906993,
+					"parameters": {
+						"child": "CardImage",
+						"which": "own"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-scale",
+					"objectClass": "CardImage",
+					"sid": 618503027983755,
+					"disabled": true,
+					"parameters": {
+						"scale": "CardBase.Height/250"
+					}
+				},
+				{
+					"id": "set-scale",
+					"objectClass": "CardBorder",
+					"sid": 322188358162594,
+					"disabled": true,
+					"parameters": {
+						"scale": "CardBase.Height/82"
+					}
+				},
+				{
+					"id": "set-animation",
+					"objectClass": "CardImage",
+					"sid": 120563969425094,
+					"parameters": {
+						"animation": "CardBase.CardType",
+						"from": "beginning"
+					}
+				},
+				{
+					"id": "set-size",
+					"objectClass": "CardBase",
+					"sid": 486437785832492,
+					"parameters": {
+						"width": "Self.TargetSize*(Self.Width/Self.Height)",
+						"height": "Self.TargetSize"
+					}
+				}
+			],
+			"sid": 867067729073251,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "pick-by-unique-id",
+							"objectClass": "CardBase",
+							"sid": 987089379179012,
+							"parameters": {
+								"unique-id": "SelectedCardUID"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-instvar-value",
+							"objectClass": "CardBase",
+							"sid": 890135544153614,
+							"parameters": {
+								"instance-variable": "TargetSize",
+								"value": "100"
+							}
+						},
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 915637255989457,
+							"parameters": {
+								"variable": "SelectedCardType",
+								"value": "CardBase.CardType"
+							}
+						}
+					],
+					"sid": 263136867336715
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "else",
+							"objectClass": "System",
+							"sid": 913932843104125
+						}
+					],
+					"actions": [
+						{
+							"id": "set-instvar-value",
+							"objectClass": "CardBase",
+							"sid": 322839375876378,
+							"parameters": {
+								"instance-variable": "TargetSize",
+								"value": "75"
+							}
+						}
+					],
+					"sid": 868647945093100
+				}
+			]
+		},
+		{
+			"functionName": "CreateCombatant",
+			"functionDescription": "",
+			"functionCategory": "",
+			"functionReturnType": "none",
+			"functionCopyPicked": false,
+			"functionIsAsync": false,
+			"functionParameters": [
+				{
+					"name": "X",
+					"type": "number",
+					"initialValue": "0",
+					"comment": "",
+					"sid": 201017470318495
+				},
+				{
+					"name": "Y",
+					"type": "number",
+					"initialValue": "0",
+					"comment": "",
+					"sid": 172641991720354
+				},
+				{
+					"name": "Type",
+					"type": "string",
+					"initialValue": "",
+					"comment": "",
+					"sid": 700214031161629
+				},
+				{
+					"name": "Template",
+					"type": "string",
+					"initialValue": "Base",
+					"comment": "",
+					"sid": 258105726660968
+				},
+				{
+					"name": "Team",
+					"type": "number",
+					"initialValue": "1",
+					"comment": "",
+					"sid": 230995524261680
+				}
+			],
+			"eventType": "function-block",
+			"conditions": [],
+			"actions": [
+				{
+					"id": "create-object",
+					"objectClass": "System",
+					"sid": 367152824836481,
+					"parameters": {
+						"object-to-create": "Combatant",
+						"layer": "\"Peasants\"",
+						"x": "X",
+						"y": "Y",
+						"create-hierarchy": true,
+						"template-name": "Template"
+					}
+				},
+				{
+					"id": "set-instvar-value",
+					"objectClass": "Combatant",
+					"sid": 369753302284002,
+					"parameters": {
+						"instance-variable": "Type",
+						"value": "Type"
+					}
+				},
+				{
+					"id": "set-animation",
+					"objectClass": "Combatant",
+					"sid": 766253135392246,
+					"parameters": {
+						"animation": "Type",
+						"from": "beginning"
+					}
+				},
+				{
+					"id": "set-size",
+					"objectClass": "Combatant",
+					"sid": 456185787331999,
+					"parameters": {
+						"width": "Functions.RetrieveCardStat(Type,3)",
+						"height": "Functions.RetrieveCardStat(Type,4)"
+					}
+				},
+				{
+					"id": "set-max-speed",
+					"objectClass": "Combatant",
+					"sid": 933724386387857,
+					"behaviorType": "Pathfinding",
+					"parameters": {
+						"speed": "Functions.RetrieveCardStat(Combatant.Type,7)"
+					}
+				},
+				{
+					"id": "set-instvar-value",
+					"objectClass": "Combatant",
+					"sid": 626895418899638,
+					"parameters": {
+						"instance-variable": "Team",
+						"value": "Team"
+					}
+				}
+			],
+			"sid": 876507949341456
+		},
+		{
+			"functionName": "CreateCard",
+			"functionDescription": "",
+			"functionCategory": "",
+			"functionReturnType": "none",
+			"functionCopyPicked": false,
+			"functionIsAsync": false,
+			"functionParameters": [
+				{
+					"name": "X",
+					"type": "number",
+					"initialValue": "0",
+					"comment": "",
+					"sid": 832877440288582
+				},
+				{
+					"name": "Y",
+					"type": "number",
+					"initialValue": "0",
+					"comment": "",
+					"sid": 857715268084840
+				},
+				{
+					"name": "Type",
+					"type": "string",
+					"initialValue": "",
+					"comment": "",
+					"sid": 191358617706588
+				},
+				{
+					"name": "Template",
+					"type": "string",
+					"initialValue": "Base",
+					"comment": "",
+					"sid": 682173430394668
+				}
+			],
+			"eventType": "function-block",
+			"conditions": [],
+			"actions": [
+				{
+					"id": "create-object",
+					"objectClass": "System",
+					"sid": 975307731783986,
+					"parameters": {
+						"object-to-create": "CardBase",
+						"layer": "\"Overlay\"",
+						"x": "X",
+						"y": "Y",
+						"create-hierarchy": true,
+						"template-name": "Template"
+					}
+				},
+				{
+					"id": "set-instvar-value",
+					"objectClass": "CardBase",
+					"sid": 210234955133550,
+					"parameters": {
+						"instance-variable": "CardType",
+						"value": "Type"
+					}
+				}
+			],
+			"sid": 517967625110035
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-object-clicked",
+					"objectClass": "Mouse",
+					"sid": 851964475280381,
+					"parameters": {
+						"mouse-button": "left",
+						"click-type": "clicked",
+						"object-clicked": "CardBase"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-boolean-instvar",
+					"objectClass": "Combatant",
+					"sid": 914368365516287,
+					"parameters": {
+						"instance-variable": "MarkedForSacrifice",
+						"value": "false"
+					}
+				},
+				{
+					"id": "set-eventvar-value",
+					"objectClass": "System",
+					"sid": 919001195427585,
+					"parameters": {
+						"variable": "Sacrificees",
+						"value": "0"
+					}
+				}
+			],
+			"sid": 211552541927013,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "pick-by-unique-id",
+							"objectClass": "CardBase",
+							"sid": 655300549702317,
+							"parameters": {
+								"unique-id": "SelectedCardUID"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 468598955706985,
+							"parameters": {
+								"variable": "SelectedCardUID",
+								"value": "CardBase.UID"
+							}
+						}
+					],
+					"sid": 680981956518046
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "else",
+							"objectClass": "System",
+							"sid": 885495680476894
+						}
+					],
+					"actions": [
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 909115812236403,
+							"parameters": {
+								"variable": "SelectedCardUID",
+								"value": "CardBase.UID"
+							}
+						}
+					],
+					"sid": 128862657600811
+				}
+			]
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-click",
+					"objectClass": "Mouse",
+					"sid": 457827713233671,
+					"parameters": {
+						"mouse-button": "left",
+						"click-type": "clicked"
+					}
+				}
+			],
+			"actions": [],
+			"sid": 978513863332182,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "cursor-is-over-object",
+							"objectClass": "Mouse",
+							"sid": 935873587405882,
+							"parameters": {
+								"object": "Combatant"
+							}
+						},
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "Combatant",
+							"sid": 305839324974028,
+							"parameters": {
+								"instance-variable": "Team",
+								"comparison": 0,
+								"value": "1"
+							}
+						},
+						{
+							"id": "is-boolean-instance-variable-set",
+							"objectClass": "Combatant",
+							"sid": 166217885567335,
+							"parameters": {
+								"instance-variable": "MarkedForSacrifice"
+							},
+							"isInverted": true
+						},
+						{
+							"id": "pick-random-instance",
+							"objectClass": "System",
+							"sid": 488960324584708,
+							"parameters": {
+								"object": "Combatant"
+							}
+						},
+						{
+							"id": "compare-two-values",
+							"objectClass": "System",
+							"sid": 145208569496790,
+							"parameters": {
+								"first-value": "Sacrificees",
+								"comparison": 2,
+								"second-value": "Functions.RetrieveCardStat(SelectedCardType,5)-0.2"
+							}
+						},
+						{
+							"id": "is-timer-running",
+							"objectClass": "Combatant",
+							"sid": 195435838339558,
+							"behaviorType": "Timer",
+							"parameters": {
+								"tag": "\"Fresh\""
+							},
+							"isInverted": true
+						}
+					],
+					"actions": [
+						{
+							"id": "set-boolean-instvar",
+							"objectClass": "Combatant",
+							"sid": 586134403013759,
+							"parameters": {
+								"instance-variable": "MarkedForSacrifice",
+								"value": "true"
+							}
+						}
+					],
+					"sid": 557060472041772
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "cursor-is-over-object",
+							"objectClass": "Mouse",
+							"sid": 336996379791179,
+							"parameters": {
+								"object": "CardBase"
+							},
+							"isInverted": true
+						},
+						{
+							"id": "compare-eventvar",
+							"objectClass": "System",
+							"sid": 917203557075255,
+							"parameters": {
+								"variable": "SelectedCardUID",
+								"comparison": 4,
+								"value": "0.4"
+							}
+						},
+						{
+							"id": "pick-by-unique-id",
+							"objectClass": "CardBase",
+							"sid": 416317007588191,
+							"parameters": {
+								"unique-id": "SelectedCardUID"
+							}
+						},
+						{
+							"id": "compare-eventvar",
+							"objectClass": "System",
+							"sid": 874905203268628,
+							"parameters": {
+								"variable": "Sacrificees",
+								"comparison": 4,
+								"value": "Functions.RetrieveCardStat(CardBase.CardType,5)-0.1"
+							}
+						},
+						{
+							"id": "compare-two-values",
+							"objectClass": "System",
+							"sid": 722065938069611,
+							"parameters": {
+								"first-value": "Mouse.X",
+								"comparison": 2,
+								"second-value": "415"
+							}
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "CreateCombatant",
+							"sid": 211314627172487,
+							"parameters": [
+								"Mouse.X",
+								"Mouse.Y",
+								"CardBase.CardType",
+								"\"Normal\"",
+								"1"
+							]
+						},
+						{
+							"id": "insert",
+							"objectClass": "Deck",
+							"sid": 322821122773113,
+							"parameters": {
+								"value": "CardBase.CardType",
+								"index": "round(random(0.53,0.47+Deck.Width))",
+								"axis": "x"
+							}
+						},
+						{
+							"id": "destroy",
+							"objectClass": "CardBase",
+							"sid": 488864729128705
+						}
+					],
+					"sid": 470825049624367,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "pick-by-evaluate",
+									"objectClass": "System",
+									"sid": 926574036106881,
+									"parameters": {
+										"object": "Participant",
+										"expression": "Participant.MarkedForSacrifice"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "destroy",
+									"objectClass": "Participant",
+									"sid": 234457023901190
+								}
+							],
+							"sid": 358892412619506
+						}
+					]
+				}
+			]
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "every-x-seconds",
+					"objectClass": "System",
+					"sid": 152931356320649,
+					"parameters": {
+						"interval-seconds": "0.1"
+					}
+				}
+			],
+			"actions": [],
+			"sid": 253988078741539,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "for-each",
+							"objectClass": "System",
+							"sid": 545634657312414,
+							"parameters": {
+								"object": "Participant"
+							}
+						}
+					],
+					"actions": [],
+					"sid": 389961937914194,
+					"children": [
+						{
+							"eventType": "variable",
+							"name": "RetargetRange",
+							"type": "number",
+							"initialValue": "120",
+							"comment": "",
+							"isStatic": false,
+							"isConstant": false,
+							"sid": 969441372364113
+						},
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 306184043081855,
+									"parameters": {
+										"variable": "TargetUID",
+										"value": "Participant.TargetUID"
+									}
+								},
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 277210889934657,
+									"parameters": {
+										"variable": "PathfinderX",
+										"value": "Participant.X"
+									}
+								},
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 663594159295281,
+									"parameters": {
+										"variable": "PathfinderY",
+										"value": "Participant.Y"
+									}
+								},
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 772495994432868,
+									"parameters": {
+										"variable": "RetargetRange",
+										"value": "Functions.RetrieveCardStat(Participant.Type,10)"
+									}
+								}
+							],
+							"sid": 981866393892971,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "pick-all",
+											"objectClass": "System",
+											"sid": 268927828932096,
+											"parameters": {
+												"object": "Participant"
+											}
+										},
+										{
+											"id": "pick-by-unique-id",
+											"objectClass": "Participant",
+											"sid": 485405537553909,
+											"parameters": {
+												"unique-id": "TargetUID"
+											}
+										},
+										{
+											"id": "compare-two-values",
+											"objectClass": "System",
+											"sid": 345421801091087,
+											"parameters": {
+												"first-value": "distance(PathfinderX,PathfinderY,Participant.X,Participant.Y)",
+												"comparison": 2,
+												"second-value": "RetargetRange"
+											}
+										}
+									],
+									"actions": [],
+									"sid": 137243846061458
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 575269197549761
+										}
+									],
+									"actions": [],
+									"sid": 444249092206517,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "is-enabled",
+													"objectClass": "Participant",
+													"sid": 575002563429314,
+													"disabled": true,
+													"behaviorType": "Pathfinding"
+												}
+											],
+											"actions": [
+												{
+													"id": "set-eventvar-value",
+													"objectClass": "System",
+													"sid": 694285996854224,
+													"parameters": {
+														"variable": "PathfinderUID",
+														"value": "int(Participant.UID)"
+													}
+												},
+												{
+													"id": "set-eventvar-value",
+													"objectClass": "System",
+													"sid": 846088028545474,
+													"parameters": {
+														"variable": "PathfinderX",
+														"value": "Participant.X"
+													}
+												},
+												{
+													"id": "set-eventvar-value",
+													"objectClass": "System",
+													"sid": 758515128223017,
+													"parameters": {
+														"variable": "PathfinderY",
+														"value": "Participant.Y"
+													}
+												},
+												{
+													"id": "set-eventvar-value",
+													"objectClass": "System",
+													"sid": 170314108750182,
+													"parameters": {
+														"variable": "PathfinderTeam",
+														"value": "Participant.Team"
+													}
+												}
+											],
+											"sid": 658138972927220,
+											"children": [
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "pick-all",
+															"objectClass": "System",
+															"sid": 238033108651302,
+															"parameters": {
+																"object": "Participant"
+															}
+														}
+													],
+													"actions": [],
+													"sid": 384558732439420,
+													"children": [
+														{
+															"eventType": "block",
+															"conditions": [
+																{
+																	"id": "pick-by-comparison",
+																	"objectClass": "System",
+																	"sid": 225724397738143,
+																	"parameters": {
+																		"object": "Participant",
+																		"expression": "Participant.Team",
+																		"comparison": 1,
+																		"value": "PathfinderTeam"
+																	}
+																},
+																{
+																	"id": "pick-nearestfurthest",
+																	"objectClass": "Participant",
+																	"sid": 403351383242095,
+																	"parameters": {
+																		"which": "nearest",
+																		"x": "PathfinderX",
+																		"y": "PathfinderY"
+																	}
+																}
+															],
+															"actions": [
+																{
+																	"id": "set-eventvar-value",
+																	"objectClass": "System",
+																	"sid": 972510205630409,
+																	"parameters": {
+																		"variable": "TargetUID",
+																		"value": "int(Participant.UID)"
+																	}
+																},
+																{
+																	"id": "set-eventvar-value",
+																	"objectClass": "System",
+																	"sid": 484561230851567,
+																	"parameters": {
+																		"variable": "TargetX",
+																		"value": "Participant.X+random(-8,8)"
+																	}
+																},
+																{
+																	"id": "set-eventvar-value",
+																	"objectClass": "System",
+																	"sid": 627029972003234,
+																	"parameters": {
+																		"variable": "TargetY",
+																		"value": "Participant.Y+random(-8,8)"
+																	}
+																},
+																{
+																	"id": "set-instvar-value",
+																	"objectClass": "Participant",
+																	"sid": 566102004782585,
+																	"parameters": {
+																		"instance-variable": "TargetDebugShit",
+																		"value": "str(TargetX)&\"     \"&str(TargetY)&\"       \"&str(PathfinderTeam)&\"        \"&str(PathfinderUID)"
+																	}
+																}
+															],
+															"sid": 201142075771164,
+															"children": [
+																{
+																	"eventType": "block",
+																	"conditions": [
+																		{
+																			"id": "pick-all",
+																			"objectClass": "System",
+																			"sid": 747288026605917,
+																			"parameters": {
+																				"object": "Participant"
+																			}
+																		},
+																		{
+																			"id": "pick-by-unique-id",
+																			"objectClass": "Participant",
+																			"sid": 239271204215029,
+																			"parameters": {
+																				"unique-id": "PathfinderUID"
+																			}
+																		}
+																	],
+																	"actions": [
+																		{
+																			"id": "destroy",
+																			"objectClass": "Participant",
+																			"sid": 149815010826078,
+																			"disabled": true
+																		},
+																		{
+																			"id": "set-instvar-value",
+																			"objectClass": "Participant",
+																			"sid": 132616330927346,
+																			"parameters": {
+																				"instance-variable": "TargetUID",
+																				"value": "TargetUID"
+																			}
+																		},
+																		{
+																			"id": "set-instvar-value",
+																			"objectClass": "Participant",
+																			"sid": 834573775713602,
+																			"parameters": {
+																				"instance-variable": "TargetX",
+																				"value": "TargetX"
+																			}
+																		},
+																		{
+																			"id": "set-instvar-value",
+																			"objectClass": "Participant",
+																			"sid": 367421821535904,
+																			"parameters": {
+																				"instance-variable": "TargetY",
+																				"value": "TargetY"
+																			}
+																		}
+																	],
+																	"sid": 186442100863966,
+																	"children": [
+																		{
+																			"eventType": "block",
+																			"conditions": [
+																				{
+																					"id": "compare-two-values",
+																					"objectClass": "System",
+																					"sid": 194803643825064,
+																					"parameters": {
+																						"first-value": "distance(PathfinderX,PathfinderY,TargetX,TargetY)",
+																						"comparison": 4,
+																						"second-value": "35"
+																					}
+																				}
+																			],
+																			"actions": [
+																				{
+																					"id": "find-path",
+																					"objectClass": "Participant",
+																					"sid": 996545208631379,
+																					"behaviorType": "Pathfinding",
+																					"parameters": {
+																						"x": "TargetX",
+																						"y": "TargetY"
+																					}
+																				}
+																			],
+																			"sid": 228861230336905
+																		}
+																	]
+																}
+															]
+														}
+													]
+												}
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"eventType": "variable",
+							"name": "PathfinderUID",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"isStatic": false,
+							"isConstant": false,
+							"sid": 900449522844121
+						},
+						{
+							"eventType": "variable",
+							"name": "PathfinderX",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"isStatic": false,
+							"isConstant": false,
+							"sid": 126254179659475
+						},
+						{
+							"eventType": "variable",
+							"name": "PathfinderY",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"isStatic": false,
+							"isConstant": false,
+							"sid": 248960509574900
+						},
+						{
+							"eventType": "variable",
+							"name": "PathfinderTeam",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"isStatic": false,
+							"isConstant": false,
+							"sid": 154189686486843
+						},
+						{
+							"eventType": "variable",
+							"name": "TargetUID",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"isStatic": false,
+							"isConstant": false,
+							"sid": 271346929165536
+						},
+						{
+							"eventType": "variable",
+							"name": "TargetX",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"isStatic": false,
+							"isConstant": false,
+							"sid": 225938475381522
+						},
+						{
+							"eventType": "variable",
+							"name": "TargetY",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"isStatic": false,
+							"isConstant": false,
+							"sid": 539841909475296
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "is-between-angles",
+									"objectClass": "System",
+									"sid": 513461548922408,
+									"parameters": {
+										"angle": "Participant.Pathfinding.MovingAngle",
+										"first-angle": "270",
+										"second-angle": "90"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-mirrored",
+									"objectClass": "Participant",
+									"sid": 153949280327248,
+									"parameters": {
+										"state": "not-mirrored"
+									}
+								}
+							],
+							"sid": 748882750174816
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "is-between-angles",
+									"objectClass": "System",
+									"sid": 383029498810832,
+									"parameters": {
+										"angle": "Participant.Pathfinding.MovingAngle",
+										"first-angle": "90",
+										"second-angle": "270"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-mirrored",
+									"objectClass": "Participant",
+									"sid": 274039362842884,
+									"parameters": {
+										"state": "mirrored"
+									}
+								}
+							],
+							"sid": 378730638151099
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-two-values",
+									"objectClass": "System",
+									"sid": 391412633871869,
+									"parameters": {
+										"first-value": "distance(Participant.X,Participant.Y,Participant.TargetX,Participant.TargetY)",
+										"comparison": 2,
+										"second-value": "45"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "stop",
+									"objectClass": "Participant",
+									"sid": 409321782015632,
+									"behaviorType": "Pathfinding"
+								}
+							],
+							"sid": 417401525584095
+						}
+					]
+				}
+			]
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-path-found",
+					"objectClass": "Participant",
+					"sid": 905875736765001,
+					"behaviorType": "Pathfinding"
+				}
+			],
+			"actions": [
+				{
+					"id": "move-along-path",
+					"objectClass": "Participant",
+					"sid": 699024578432878,
+					"behaviorType": "Pathfinding"
+				}
+			],
+			"sid": 273209420555567
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-created",
+					"objectClass": "Combatant",
+					"sid": 262958656801698
+				}
+			],
+			"actions": [
+				{
+					"id": "start-timer",
+					"objectClass": "Combatant",
+					"sid": 922806137638941,
+					"behaviorType": "Timer",
+					"parameters": {
+						"duration": "1.0",
+						"type": "once",
+						"tag": "\"Fresh\""
+					}
+				},
+				{
+					"id": "wait",
+					"objectClass": "System",
+					"sid": 530436655310634,
+					"parameters": {
+						"seconds": "0.05",
+						"use-timescale": true
+					}
+				},
+				{
+					"id": "start-timer",
+					"objectClass": "Combatant",
+					"sid": 874921179020666,
+					"behaviorType": "Timer",
+					"parameters": {
+						"duration": "Functions.RetrieveCardStat(Combatant.Type,9)",
+						"type": "regular",
+						"tag": "\"Cooldown\""
+					}
+				},
+				{
+					"id": "set-instvar-value",
+					"objectClass": "Combatant",
+					"sid": 160261473049384,
+					"parameters": {
+						"instance-variable": "MaxHealth",
+						"value": "Functions.RetrieveCardStat(Combatant.Type,1)"
+					}
+				},
+				{
+					"id": "set-instvar-value",
+					"objectClass": "Combatant",
+					"sid": 286144501940263,
+					"parameters": {
+						"instance-variable": "Health",
+						"value": "Self.MaxHealth"
+					}
+				}
+			],
+			"sid": 912239439423889
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "compare-instance-variable",
+					"objectClass": "Combatant",
+					"sid": 761863719074098,
+					"parameters": {
+						"instance-variable": "Health",
+						"comparison": 2,
+						"value": "0.2"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "destroy",
+					"objectClass": "Combatant",
+					"sid": 619142179543235
+				}
+			],
+			"sid": 144878558473211
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "compare-instance-variable",
+					"objectClass": "Pillar",
+					"sid": 640133745956127,
+					"parameters": {
+						"instance-variable": "Health",
+						"comparison": 2,
+						"value": "0.2"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "destroy",
+					"objectClass": "Pillar",
+					"sid": 685782384023732
+				}
+			],
+			"sid": 601406787371564
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-created",
+					"objectClass": "Participant",
+					"sid": 496322889408102
+				}
+			],
+			"actions": [
+				{
+					"id": "create-object",
+					"objectClass": "System",
+					"sid": 549680253321249,
+					"parameters": {
+						"object-to-create": "HealthbarBG",
+						"layer": "\"Healthbars and stuff\"",
+						"x": "Participant.X",
+						"y": "Participant.Y+20",
+						"create-hierarchy": true,
+						"template-name": "\"\""
+					}
+				},
+				{
+					"id": "set-instvar-value",
+					"objectClass": "HealthbarBG",
+					"sid": 267632153177811,
+					"parameters": {
+						"instance-variable": "HolderUID",
+						"value": "Participant.UID"
+					}
+				},
+				{
+					"id": "wait",
+					"objectClass": "System",
+					"sid": 743890536120647,
+					"parameters": {
+						"seconds": "0.03",
+						"use-timescale": true
+					}
+				}
+			],
+			"sid": 205647683798757,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "Participant",
+							"sid": 628736876156330,
+							"parameters": {
+								"instance-variable": "Type",
+								"comparison": 0,
+								"value": "\"Goat Herd\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "CreateCombatant",
+							"sid": 744686705279518,
+							"parameters": [
+								"Participant.X",
+								"Participant.Y-30",
+								"\"Goat\"",
+								"\"Normal\"",
+								"1"
+							]
+						},
+						{
+							"callFunction": "CreateCombatant",
+							"sid": 529496880899384,
+							"parameters": [
+								"Participant.X+22",
+								"Participant.Y-14",
+								"\"Goat\"",
+								"\"Normal\"",
+								"1"
+							]
+						},
+						{
+							"callFunction": "CreateCombatant",
+							"sid": 352675934293595,
+							"parameters": [
+								"Participant.X-9",
+								"Participant.Y+25",
+								"\"Goat\"",
+								"\"Normal\"",
+								"1"
+							]
+						},
+						{
+							"callFunction": "CreateCombatant",
+							"sid": 452568927811271,
+							"parameters": [
+								"Participant.X+9",
+								"Participant.Y+25",
+								"\"Goat\"",
+								"\"Normal\"",
+								"1"
+							]
+						},
+						{
+							"callFunction": "CreateCombatant",
+							"sid": 349063002939399,
+							"parameters": [
+								"Participant.X-22",
+								"Participant.Y-14",
+								"\"Goat\"",
+								"\"Normal\"",
+								"1"
+							]
+						},
+						{
+							"id": "destroy",
+							"objectClass": "Participant",
+							"sid": 366140732751504
+						}
+					],
+					"sid": 586163092167833
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "Participant",
+							"sid": 293891744902041,
+							"parameters": {
+								"instance-variable": "Type",
+								"comparison": 0,
+								"value": "\"Pigeon Flock\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "CreateCombatant",
+							"sid": 475602765979841,
+							"parameters": [
+								"Participant.X",
+								"Participant.Y-30",
+								"\"Pigeon\"",
+								"\"Normal\"",
+								"1"
+							]
+						},
+						{
+							"callFunction": "CreateCombatant",
+							"sid": 898814690753917,
+							"parameters": [
+								"Participant.X+22",
+								"Participant.Y-14",
+								"\"Pigeon\"",
+								"\"Normal\"",
+								"1"
+							]
+						},
+						{
+							"callFunction": "CreateCombatant",
+							"sid": 990363800587897,
+							"parameters": [
+								"Participant.X-9",
+								"Participant.Y+25",
+								"\"Pigeon\"",
+								"\"Normal\"",
+								"1"
+							]
+						},
+						{
+							"callFunction": "CreateCombatant",
+							"sid": 998609462598268,
+							"parameters": [
+								"Participant.X+9",
+								"Participant.Y+25",
+								"\"Pigeon\"",
+								"\"Normal\"",
+								"1"
+							]
+						},
+						{
+							"callFunction": "CreateCombatant",
+							"sid": 158270206274846,
+							"parameters": [
+								"Participant.X-22",
+								"Participant.Y-14",
+								"\"Pigeon\"",
+								"\"Normal\"",
+								"1"
+							]
+						},
+						{
+							"id": "destroy",
+							"objectClass": "Participant",
+							"sid": 991415763327201
+						}
+					],
+					"sid": 803309231044727
+				}
+			]
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "for-each",
+					"objectClass": "System",
+					"sid": 663526216794485,
+					"parameters": {
+						"object": "HealthbarBG"
+					}
+				},
+				{
+					"id": "pick-children",
+					"objectClass": "HealthbarBG",
+					"sid": 140444777671579,
+					"parameters": {
+						"child": "Healthbar",
+						"which": "own"
+					}
+				},
+				{
+					"id": "pick-by-unique-id",
+					"objectClass": "Participant",
+					"sid": 352755498425278,
+					"parameters": {
+						"unique-id": "HealthbarBG.HolderUID"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-width",
+					"objectClass": "HealthbarBG",
+					"sid": 656953823198198,
+					"parameters": {
+						"width": "(min(20,max(2,Participant.MaxHealth))*4)+10"
+					}
+				},
+				{
+					"id": "set-width",
+					"objectClass": "Healthbar",
+					"sid": 330654140903743,
+					"parameters": {
+						"width": "((HealthbarBG.Width-10)*(Participant.Health/Participant.MaxHealth))+10"
+					}
+				},
+				{
+					"id": "set-instvar-value",
+					"objectClass": "Healthbar",
+					"sid": 355698142495148,
+					"parameters": {
+						"instance-variable": "HolderUID",
+						"value": "HealthbarBG.HolderUID"
+					}
+				},
+				{
+					"id": "set-position",
+					"objectClass": "HealthbarBG",
+					"sid": 228342129541962,
+					"parameters": {
+						"x": "Participant.X",
+						"y": "Participant.Y+20"
+					}
+				}
+			],
+			"sid": 656531812768662
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-destroyed",
+					"objectClass": "Participant",
+					"sid": 602501260997397
+				},
+				{
+					"id": "pick-by-comparison",
+					"objectClass": "System",
+					"sid": 491006509917571,
+					"parameters": {
+						"object": "HealthbarBG",
+						"expression": "HealthbarBG.HolderUID",
+						"comparison": 0,
+						"value": "Participant.UID"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "destroy",
+					"objectClass": "HealthbarBG",
+					"sid": 445800097110655
+				}
+			],
+			"sid": 634801204027527,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "Participant",
+							"sid": 163639620082562,
+							"parameters": {
+								"instance-variable": "Special",
+								"comparison": 0,
+								"value": "\"Crystal\""
+							}
+						},
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "Participant",
+							"sid": 943756197521130,
+							"parameters": {
+								"instance-variable": "Special",
+								"comparison": 0,
+								"value": "\"Prime\""
+							}
+						}
+					],
+					"actions": [],
+					"sid": 143929177800806,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "repeat",
+									"objectClass": "System",
+									"sid": 264810158673621,
+									"parameters": {
+										"count": "10"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "create-object",
+									"objectClass": "System",
+									"sid": 621637777952409,
+									"parameters": {
+										"object-to-create": "CrystalShard",
+										"layer": "\"Peasants\"",
+										"x": "Participant.X",
+										"y": "Participant.Y",
+										"create-hierarchy": false,
+										"template-name": "\"\""
+									}
+								},
+								{
+									"id": "set-angle-of-motion",
+									"objectClass": "CrystalShard",
+									"sid": 583515932502268,
+									"behaviorType": "Bullet",
+									"parameters": {
+										"angle": "random(0,360)"
+									}
+								}
+							],
+							"sid": 738519602491128,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "is-animation-playing",
+											"objectClass": "Participant",
+											"sid": 575601170708850,
+											"parameters": {
+												"animation": "\"Lesser\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-animation",
+											"objectClass": "CrystalShard",
+											"sid": 474343737944033,
+											"parameters": {
+												"animation": "\"Blue\"&str(round(random(0.51,3.49)))",
+												"from": "beginning"
+											}
+										}
+									],
+									"sid": 572631422566077
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "is-animation-playing",
+											"objectClass": "Participant",
+											"sid": 775796050412175,
+											"parameters": {
+												"animation": "\"Prime\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-animation",
+											"objectClass": "CrystalShard",
+											"sid": 899318330446767,
+											"parameters": {
+												"animation": "\"Purple\"&str(round(random(0.51,3.49)))",
+												"from": "beginning"
+											}
+										}
+									],
+									"sid": 526383302562220
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "is-animation-playing",
+											"objectClass": "Participant",
+											"sid": 206370170934060,
+											"parameters": {
+												"animation": "\"LesserEvil\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-animation",
+											"objectClass": "CrystalShard",
+											"sid": 981964320722389,
+											"parameters": {
+												"animation": "\"Pink\"&str(round(random(0.51,3.49)))",
+												"from": "beginning"
+											}
+										}
+									],
+									"sid": 424316813533110
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "is-animation-playing",
+											"objectClass": "Participant",
+											"sid": 695691439338036,
+											"parameters": {
+												"animation": "\"PrimeEvil\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-animation",
+											"objectClass": "CrystalShard",
+											"sid": 737399340670222,
+											"parameters": {
+												"animation": "\"Red\"&str(round(random(0.51,3.49)))",
+												"from": "beginning"
+											}
+										}
+									],
+									"sid": 104209016457894
+								}
+							]
+						}
+					],
+					"isOrBlock": true
+				},
+				{
+					"eventType": "variable",
+					"name": "Team",
+					"type": "number",
+					"initialValue": "0",
+					"comment": "",
+					"isStatic": false,
+					"isConstant": false,
+					"sid": 448662430865935
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "Participant",
+							"sid": 734075772789298,
+							"parameters": {
+								"instance-variable": "Special",
+								"comparison": 0,
+								"value": "\"Prime\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 818881594513447,
+							"parameters": {
+								"variable": "Team",
+								"value": "Participant.Team"
+							}
+						}
+					],
+					"sid": 754521283263094,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "pick-all",
+									"objectClass": "System",
+									"sid": 339357196956684,
+									"parameters": {
+										"object": "Participant"
+									}
+								},
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "Participant",
+									"sid": 493098817045347,
+									"parameters": {
+										"instance-variable": "Team",
+										"comparison": 0,
+										"value": "Team"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-instvar-value",
+									"objectClass": "Participant",
+									"sid": 561101907189659,
+									"parameters": {
+										"instance-variable": "Health",
+										"value": "-100000"
+									}
+								}
+							],
+							"sid": 349509923497296
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 398033004573020,
+									"parameters": {
+										"variable": "Team",
+										"comparison": 0,
+										"value": "1"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "wait",
+									"objectClass": "System",
+									"sid": 568143979079890,
+									"parameters": {
+										"seconds": "4",
+										"use-timescale": true
+									}
+								},
+								{
+									"id": "go-to-layout",
+									"objectClass": "System",
+									"sid": 632821257939281,
+									"parameters": {
+										"layout": "Intro"
+									}
+								}
+							],
+							"sid": 559917885473233
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 264176328634003
+								}
+							],
+							"actions": [
+								{
+									"id": "wait",
+									"objectClass": "System",
+									"sid": 818713256587965,
+									"parameters": {
+										"seconds": "4",
+										"use-timescale": true
+									}
+								},
+								{
+									"id": "go-to-layout",
+									"objectClass": "System",
+									"sid": 369639578812013,
+									"parameters": {
+										"layout": "Intro"
+									}
+								}
+							],
+							"sid": 120003087233977
+						}
+					]
+				},
+				{
+					"eventType": "variable",
+					"name": "X",
+					"type": "number",
+					"initialValue": "0",
+					"comment": "",
+					"isStatic": false,
+					"isConstant": false,
+					"sid": 971516515579557
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "Participant",
+							"sid": 921694236216160,
+							"parameters": {
+								"instance-variable": "Type",
+								"comparison": 0,
+								"value": "\"Slime\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 698485004670250,
+							"parameters": {
+								"variable": "X",
+								"value": "Participant.X"
+							}
+						},
+						{
+							"callFunction": "CreateCombatant",
+							"sid": 145095834080984,
+							"parameters": [
+								"X-random(10,20)",
+								"Participant.Y",
+								"\"SmallSlime\"",
+								"\"Base\"",
+								"Participant.Team"
+							]
+						},
+						{
+							"callFunction": "CreateCombatant",
+							"sid": 498791269754462,
+							"parameters": [
+								"X+random(10,20)",
+								"Participant.Y",
+								"\"SmallSlime\"",
+								"\"Base\"",
+								"Participant.Team"
+							]
+						}
+					],
+					"sid": 455036549344325
+				}
+			]
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "every-x-seconds",
+					"objectClass": "System",
+					"sid": 544972366950686,
+					"parameters": {
+						"interval-seconds": "5"
+					}
+				}
+			],
+			"actions": [],
+			"sid": 960789899029747,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "Pentagram",
+							"sid": 374463194672445,
+							"parameters": {
+								"instance-variable": "Summon",
+								"comparison": 1,
+								"value": "\"\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "CreateCombatant",
+							"sid": 576728644088500,
+							"parameters": [
+								"Pentagram.X",
+								"Pentagram.Y",
+								"Pentagram.Summon",
+								"\"Base\"",
+								"2"
+							]
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "Pentagram",
+							"sid": 925638396318442,
+							"parameters": {
+								"instance-variable": "Summon",
+								"value": "\"\""
+							}
+						}
+					],
+					"sid": 162665312791081,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "pick-nearestfurthest",
+									"objectClass": "CardImage",
+									"sid": 881658959445525,
+									"parameters": {
+										"which": "nearest",
+										"x": "Pentagram.X",
+										"y": "Pentagram.Y"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "destroy",
+									"objectClass": "CardImage",
+									"sid": 942140057492116
+								}
+							],
+							"sid": 571450696872496
+						}
+					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "pick-random-instance",
+							"objectClass": "System",
+							"sid": 540311646591501,
+							"parameters": {
+								"object": "Pentagram"
+							}
+						}
+					],
+					"actions": [],
+					"sid": 107239805846783,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 663952784473406,
+									"parameters": {
+										"variable": "Set",
+										"comparison": 0,
+										"value": "\"C\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "SetPentagramSummon",
+									"sid": 112628994880498,
+									"parameters": [
+										"choose(\"Cow\",\"Cow\",\"Pigeon Flock\")",
+										"Pentagram.UID"
+									]
+								}
+							],
+							"sid": 447760742515880
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 669000405913235
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "SetPentagramSummon",
+									"sid": 889276938767472,
+									"parameters": [
+										"choose(\"Goat\",\"Pigeon\",\"Pigeon\",\"Pigeon\",\"Goat\",\"Fiend\")",
+										"Pentagram.UID"
+									]
+								}
+							],
+							"sid": 434923159491696
+						}
+					]
+				}
+			]
+		},
+		{
+			"functionName": "SetPentagramSummon",
+			"functionDescription": "",
+			"functionCategory": "",
+			"functionReturnType": "none",
+			"functionCopyPicked": false,
+			"functionIsAsync": false,
+			"functionParameters": [
+				{
+					"name": "Summon",
+					"type": "string",
+					"initialValue": "Goat",
+					"comment": "",
+					"sid": 480249344428333
+				},
+				{
+					"name": "UID",
+					"type": "number",
+					"initialValue": "0",
+					"comment": "",
+					"sid": 940031412166289
+				}
+			],
+			"eventType": "function-block",
+			"conditions": [],
+			"actions": [],
+			"sid": 960151829601845,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "pick-by-unique-id",
+							"objectClass": "Pentagram",
+							"sid": 925231415950459,
+							"parameters": {
+								"unique-id": "UID"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-instvar-value",
+							"objectClass": "Pentagram",
+							"sid": 648521527387268,
+							"parameters": {
+								"instance-variable": "Summon",
+								"value": "Summon"
+							}
+						},
+						{
+							"id": "spawn-another-object",
+							"objectClass": "Pentagram",
+							"sid": 987957477578885,
+							"parameters": {
+								"object": "CardImage",
+								"layer": "\"Bottom\"",
+								"image-point": "0",
+								"create-hierarchy": false,
+								"template-name": "\"\""
+							}
+						},
+						{
+							"id": "set-opacity",
+							"objectClass": "CardImage",
+							"sid": 828834077024973,
+							"parameters": {
+								"opacity": "50"
+							}
+						},
+						{
+							"id": "set-animation",
+							"objectClass": "CardImage",
+							"sid": 427024404827809,
+							"parameters": {
+								"animation": "Pentagram.Summon",
+								"from": "beginning"
+							}
+						},
+						{
+							"id": "set-size",
+							"objectClass": "CardImage",
+							"sid": 842380342309814,
+							"parameters": {
+								"width": "Self.Width/2",
+								"height": "Self.Height/2"
+							}
+						}
+					],
+					"sid": 596009922791532
+				}
+			]
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "for-each",
+					"objectClass": "System",
+					"sid": 320909333022312,
+					"parameters": {
+						"object": "Pentagram"
+					}
+				}
+			],
+			"actions": [],
+			"sid": 999839705599722,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "Pentagram",
+							"sid": 228577146551687,
+							"parameters": {
+								"instance-variable": "Summon",
+								"comparison": 0,
+								"value": "\"\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-default-color",
+							"objectClass": "Pentagram",
+							"sid": 126008156620763,
+							"parameters": {
+								"color": "rgbEx255(102, 0, 0)"
+							}
+						}
+					],
+					"sid": 826333860548934
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "else",
+							"objectClass": "System",
+							"sid": 718462657837243
+						}
+					],
+					"actions": [
+						{
+							"id": "set-default-color",
+							"objectClass": "Pentagram",
+							"sid": 201016175702236,
+							"parameters": {
+								"color": "rgbEx255(152, 80, 80)"
+							}
+						}
+					],
+					"sid": 599946600429221
+				}
+			]
+		},
+		{
+			"functionName": "RestockCard",
+			"functionDescription": "",
+			"functionCategory": "",
+			"functionReturnType": "none",
+			"functionCopyPicked": false,
+			"functionIsAsync": false,
+			"functionParameters": [
+				{
+					"name": "Y",
+					"type": "number",
+					"initialValue": "0",
+					"comment": "",
+					"sid": 413085274735804
+				}
+			],
+			"eventType": "function-block",
+			"conditions": [],
+			"actions": [],
+			"sid": 641914430276507,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "pick-by-comparison",
+							"objectClass": "System",
+							"sid": 138599020761274,
+							"parameters": {
+								"object": "CardBase",
+								"expression": "Functions.RetrieveCardStat(CardBase.CardType,5)",
+								"comparison": 2,
+								"value": "0.1"
+							}
+						},
+						{
+							"id": "compare-two-values",
+							"objectClass": "System",
+							"sid": 961294629225021,
+							"parameters": {
+								"first-value": "CardBase.Count",
+								"comparison": 2,
+								"second-value": "2.8"
+							}
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "CreateCard",
+							"sid": 254564852533790,
+							"parameters": [
+								"CardX",
+								"Y",
+								"Deck.At(0)",
+								"\"Base\""
+							]
+						},
+						{
+							"id": "delete",
+							"objectClass": "Deck",
+							"sid": 802094946148036,
+							"parameters": {
+								"index": "0",
+								"axis": "x"
+							}
+						}
+					],
+					"sid": 671474876418137,
+					"isOrBlock": true
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "else",
+							"objectClass": "System",
+							"sid": 819415969194685
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "CreateCard",
+							"sid": 897253278262761,
+							"parameters": [
+								"CardX",
+								"Y",
+								"Deck.At(Functions.DeckCardXID(\"Dove\"))",
+								"\"Base\""
+							]
+						},
+						{
+							"id": "delete",
+							"objectClass": "Deck",
+							"sid": 488049007341210,
+							"parameters": {
+								"index": "Functions.DeckCardXID(\"Dove\")",
+								"axis": "x"
+							}
+						}
+					],
+					"sid": 419461767918396
+				}
+			]
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "every-x-seconds",
+					"objectClass": "System",
+					"sid": 256708612833466,
+					"parameters": {
+						"interval-seconds": "3"
+					}
+				}
+			],
+			"actions": [],
+			"sid": 554608586659889,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-two-values",
+							"objectClass": "System",
+							"sid": 543924569970607,
+							"parameters": {
+								"first-value": "CardBase.Count",
+								"comparison": 2,
+								"second-value": "3.8"
+							}
+						}
+					],
+					"actions": [],
+					"sid": 430420417384881,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "pick-nearestfurthest",
+									"objectClass": "CardBase",
+									"sid": 704457193849891,
+									"parameters": {
+										"which": "nearest",
+										"x": "CardX",
+										"y": "60"
+									}
+								},
+								{
+									"id": "is-between-values",
+									"objectClass": "System",
+									"sid": 631979401700431,
+									"parameters": {
+										"value": "CardBase.Y",
+										"lower-bound": "50",
+										"upper-bound": "70"
+									},
+									"isInverted": true
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "RestockCard",
+									"sid": 340720478624666,
+									"parameters": [
+										"60"
+									]
+								}
+							],
+							"sid": 926492097278279
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 593734580495149
+								},
+								{
+									"id": "pick-nearestfurthest",
+									"objectClass": "CardBase",
+									"sid": 373386868954272,
+									"parameters": {
+										"which": "nearest",
+										"x": "CardX",
+										"y": "180"
+									}
+								},
+								{
+									"id": "is-between-values",
+									"objectClass": "System",
+									"sid": 114876963921887,
+									"parameters": {
+										"value": "CardBase.Y",
+										"lower-bound": "170",
+										"upper-bound": "190"
+									},
+									"isInverted": true
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "RestockCard",
+									"sid": 866599168761165,
+									"parameters": [
+										"180"
+									]
+								}
+							],
+							"sid": 367834356595353
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 423909217682848
+								},
+								{
+									"id": "pick-nearestfurthest",
+									"objectClass": "CardBase",
+									"sid": 404897647281824,
+									"parameters": {
+										"which": "nearest",
+										"x": "CardX",
+										"y": "300"
+									}
+								},
+								{
+									"id": "is-between-values",
+									"objectClass": "System",
+									"sid": 623838902826712,
+									"parameters": {
+										"value": "CardBase.Y",
+										"lower-bound": "290",
+										"upper-bound": "310"
+									},
+									"isInverted": true
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "RestockCard",
+									"sid": 598465550462329,
+									"parameters": [
+										"300"
+									]
+								}
+							],
+							"sid": 778549872733403
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 163421979530225
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "RestockCard",
+									"sid": 413093631753894,
+									"parameters": [
+										"420"
+									]
+								}
+							],
+							"sid": 569315277507215
+						}
+					]
+				}
+			]
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "cursor-is-over-object",
+					"objectClass": "Mouse",
+					"sid": 690854773140478,
+					"parameters": {
+						"object": "CardBase"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-instvar-value",
+					"objectClass": "CardDescryptionBase",
+					"sid": 343999212015336,
+					"parameters": {
+						"instance-variable": "Type",
+						"value": "CardBase.CardType"
+					}
+				}
+			],
+			"sid": 898825466748459
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "else",
+					"objectClass": "System",
+					"sid": 489651636710080
+				},
+				{
+					"id": "compare-eventvar",
+					"objectClass": "System",
+					"sid": 123796612389883,
+					"parameters": {
+						"variable": "SelectedCardUID",
+						"comparison": 1,
+						"value": "0"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-instvar-value",
+					"objectClass": "CardDescryptionBase",
+					"sid": 848731654291092,
+					"parameters": {
+						"instance-variable": "Type",
+						"value": "SelectedCardType"
+					}
+				}
+			],
+			"sid": 388514300260788
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "else",
+					"objectClass": "System",
+					"sid": 877488021110922
+				},
+				{
+					"id": "pick-children",
+					"objectClass": "CardDescryptionBase",
+					"sid": 681257004827306,
+					"parameters": {
+						"child": "CardImage",
+						"which": "own"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-instvar-value",
+					"objectClass": "CardDescryptionBase",
+					"sid": 548611027019389,
+					"parameters": {
+						"instance-variable": "Type",
+						"value": "\"\""
+					}
+				},
+				{
+					"id": "set-animation",
+					"objectClass": "CardImage",
+					"sid": 381977376449866,
+					"parameters": {
+						"animation": "\"Invisible\"",
+						"from": "beginning"
+					}
+				},
+				{
+					"id": "set-text",
+					"objectClass": "DescriptionText",
+					"sid": 345160818286547,
+					"parameters": {
+						"text": "\"\""
+					}
+				}
+			],
+			"sid": 478012844474540
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "compare-instance-variable",
+					"objectClass": "CardDescryptionBase",
+					"sid": 962737540368317,
+					"parameters": {
+						"instance-variable": "Type",
+						"comparison": 1,
+						"value": "\"\""
+					}
+				},
+				{
+					"id": "pick-children",
+					"objectClass": "CardDescryptionBase",
+					"sid": 773452438658477,
+					"parameters": {
+						"child": "CardBorder",
+						"which": "own"
+					}
+				},
+				{
+					"id": "pick-children",
+					"objectClass": "CardDescryptionBase",
+					"sid": 796177321786252,
+					"parameters": {
+						"child": "CardImage",
+						"which": "own"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-animation",
+					"objectClass": "CardImage",
+					"sid": 232630909834936,
+					"parameters": {
+						"animation": "CardDescryptionBase.Type",
+						"from": "beginning"
+					}
+				},
+				{
+					"id": "set-text",
+					"objectClass": "DescriptionText",
+					"sid": 706537279424849,
+					"parameters": {
+						"text": "CardDescryptionBase.Type&\"\nCost: \"&str(Functions.RetrieveCardStat(CardDescryptionBase.Type,5))&\" Sacrifices\nMovement Speed: \"&str(Functions.RetrieveCardStat(CardDescryptionBase.Type,7))&\"\nHealth: \"&str(Functions.RetrieveCardStat(CardDescryptionBase.Type,1))&\"\nDamage per Second: \"&str(Functions.RetrieveCardStat(CardDescryptionBase.Type,2))&\"\nWorth \"&str(Functions.RetrieveCardStat(CardDescryptionBase.Type,6))&\" Sacrifice(s)\""
+					}
+				}
+			],
+			"sid": 464070377667250
+		}
+	],
+	"sid": 627913992211435
+}
